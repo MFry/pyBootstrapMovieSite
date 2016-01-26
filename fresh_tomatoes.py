@@ -2,7 +2,6 @@ import webbrowser
 import os
 import re
 
-
 # Styles and scripting for the page
 main_page_head = '''
 <!DOCTYPE html>
@@ -55,10 +54,12 @@ main_page_head = '''
             top: 0;
             background-color: white;
         }
-        . card {
-            margin: 10px;
-            display: inline-block;
-            position: absolute;
+        . summary {
+            -ms-text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+            height:236px;
+            overflow: hidden;
         }
 
     </style>
@@ -90,7 +91,6 @@ main_page_head = '''
 </head>
 '''
 
-
 # The main page layout and title bar
 main_page_content = '''
   <body>
@@ -119,29 +119,33 @@ main_page_content = '''
     <div class="container">
       {movie_tiles}
     </div>
-    <script>
-        {script}
-    </script>
   </body>
 </html>
 '''
 
-
 # A single movie entry html template
 movie_tile_content = '''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
-            <img src="{poster_image_url}" width="220" height="342">
-            <h2>{movie_title}</h2>
+
+            <div class=".container summary">
+                <img class="col-md-7" src="{poster_image_url}" width="220" height="339">
+                <p class="col-md-5">
+                    <h5><b>Summary: </b></h5>
+                    {summary}
+                </p>
+            </div>
+            <div class=".container-fluid">
+                <strong>Director:</strong> {director}<br>
+                <strong>Stars:</strong> {stars}
+            </div>
+            <div style="clear: both;"></div>
+            <div class=".container">
+                <h2 class="text-center">{movie_title}</h2>
+            </div>
 </div>
 '''
-#jquery script to create card flip effect
-script = '''
-        $('.card').flip({
-            axis: 'x',
-            trigger: 'hover'
-        });
-'''
 
+movie_talent_content = '<a href="http://www.google.com/search?q={query}">{name}</a>'
 
 
 def create_movie_tiles_content(movies):
@@ -150,19 +154,47 @@ def create_movie_tiles_content(movies):
     for movie in movies:
         # Extract the youtube ID from the url
         youtube_id_match = re.search(
-            r'(?<=v=)[^&#]+', movie.trailer_youtube_url)
+                r'(?<=v=)[^&#]+', movie.trailer_youtube_url)
         youtube_id_match = youtube_id_match or re.search(
-            r'(?<=be/)[^&#]+', movie.trailer_youtube_url)
+                r'(?<=be/)[^&#]+', movie.trailer_youtube_url)
         trailer_youtube_id = (youtube_id_match.group(0) if youtube_id_match
                               else None)
 
         # Append the tile for the movie with its content filled in
         content += movie_tile_content.format(
-            movie_title=movie.title,
-            poster_image_url=movie.poster_image_url,
-            trailer_youtube_id=trailer_youtube_id
+                movie_title=movie.title,
+                poster_image_url=movie.poster_image_url,
+                trailer_youtube_id=trailer_youtube_id,
+                summary=movie.summary_text,
+                director=construct_google_link(movie.director),
+                stars=construct_google_link(*movie.stars)
         )
     return content
+
+
+def construct_google_link(*names):
+    """
+
+    :param names:
+     :type names: list str
+    :return:
+     :rtype: str
+    """
+    return_link = ''
+    for name in names:
+        if return_link != '':
+            return_link += ', '
+        name_parts = name.split(' ')
+        # for people with multiple names
+        query = ''
+        for part in name_parts:
+            if query != '':
+                query += '+'
+            query += part
+        return_link += movie_talent_content.format(query=query,
+                                                   name=name)
+
+    return return_link
 
 
 def open_movies_page(movies):
@@ -171,8 +203,8 @@ def open_movies_page(movies):
 
     # Replace the movie tiles placeholder generated content
     rendered_content = main_page_content.format(
-        movie_tiles=create_movie_tiles_content(movies),
-        script=script)
+            movie_tiles=create_movie_tiles_content(movies),
+    )
 
     # Output the file
     output_file.write(main_page_head + rendered_content)
