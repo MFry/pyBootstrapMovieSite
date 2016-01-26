@@ -9,11 +9,14 @@ First project in Udacity's full stack nanodegree.
 1. Add driver.py, media.py and fresh_tomatoes.py to the same folder
   1. Create an additional folder in the same place named "movies" (this can be altered in the driver.py)
   2. In movies folder add desired movie data text files (examples provided)
+
 ### Run:
     python driver.py
 ## Author:
+
  Michal Frystacky
 ### License:
+
  The MIT License (MIT)
 Copyright (c) 2016 Michal Frystacky
 
