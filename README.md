@@ -10,12 +10,13 @@ Python3 is used to generate a static web page allowing visitors to browse their 
  
  Web Stack (HTML/CSS/JS with jQuery & Bootstrap) 
 ### Setup:
-1. Add driver.py, media.py and fresh_tomatoes.py to the same folder
-  1. Create an additional folder in the same place named "movies" (this can be altered in the driver.py)
+1. Add **driver.py**, **media.py** and **fresh_tomatoes.py** to the same folder
+  1. Create an additional folder in the same place named "**movies**" (this can be altered in the driver.py)
   2. In movies folder add desired movie data text files (examples provided)
 
 ### Run:
 In terminal/command prompt run from the program directory
+
     python driver.py
 ## Author:
 
