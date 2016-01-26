@@ -2,6 +2,9 @@ __author__ = 'Michal Frystacky'
 
 
 class Movie:
+    """
+        Container for extracted movie information data
+    """
     def __init__(self, title, poster_image_url, youtube_url, summary, director, *stars):
         self.title = title
         self.poster_image_url = poster_image_url

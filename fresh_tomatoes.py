@@ -2,6 +2,13 @@ import webbrowser
 import os
 import re
 
+__author__ = 'Michal Frystacky'
+
+"""
+This is a modified version of Movie Trailer Website codebase.
+ Found at:  https://docs.google.com/a/knowlabs.com/document/d/1joDQNQl_4icYYm6tM_F9ch5hZEH_f157hlljSUGOLWs/pub?embedded=true
+"""
+
 # Styles and scripting for the page
 main_page_head = '''
 <!DOCTYPE html>
@@ -153,12 +160,18 @@ movie_tile_content = '''
             </div>
 </div>
 '''
-
+# template to create google linked names
 movie_talent_content = '<a href="http://www.google.com/search?q={query}">{name}</a>'
 
 
 def create_movie_tiles_content(movies):
-    # The HTML content for this section of the page
+    """
+        Generates movie tiles HTML code and inserts it into main page head
+    :param movies:
+     :type movies: list[Movie]
+    :return: a generated HTML page with movie tiles inserted
+    :rtype: str
+    """
     content = ''
     for movie in movies:
         # Extract the youtube ID from the url
@@ -183,10 +196,11 @@ def create_movie_tiles_content(movies):
 
 def construct_google_link(*names):
     """
-
-    :param names:
-     :type names: list str
-    :return:
+        A program that takes strings of names and creates google links with html code out of them
+    :param names: arbitrary many string containing names split by space. (e.x. arnold schwarzenegger)
+     :type names: list[str]
+    :return: A string containing a google link linking the names to google results.
+                (e.x. <a href="http://www.google.com/search?q=Colin+Farrell">Colin Farrell</a>)
      :rtype: str
     """
     return_link = ''
