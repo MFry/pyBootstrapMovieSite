@@ -54,12 +54,12 @@ main_page_head = '''
             top: 0;
             background-color: white;
         }
-        . summary {
+        .summary {
+            height:236px;
+            overflow: hidden;
             -ms-text-overflow: ellipsis;
             -o-text-overflow: ellipsis;
             text-overflow: ellipsis;
-            height:236px;
-            overflow: hidden;
         }
 
     </style>
@@ -127,10 +127,10 @@ main_page_content = '''
 movie_tile_content = '''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
 
-            <div class=".container summary">
+            <div class=".container">
                 <img class="col-md-7" src="{poster_image_url}" width="220" height="339">
-                <p class="col-md-5">
-                    <h5><b>Summary: </b></h5>
+                 <h5><b>Summary: </b></h5>
+                <p class="col-md-5 summary">
                     {summary}
                 </p>
             </div>
