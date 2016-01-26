@@ -36,6 +36,7 @@ main_page_head = '''
         .movie-tile {
             margin-bottom: 20px;
             padding-top: 20px;
+            padding-bottom: 60px;
         }
         .movie-tile:hover {
             background-color: #EEE;
@@ -55,11 +56,17 @@ main_page_head = '''
             background-color: white;
         }
         .summary {
-            height:236px;
+            height:264px;
             overflow: hidden;
             -ms-text-overflow: ellipsis;
             -o-text-overflow: ellipsis;
             text-overflow: ellipsis;
+            padding: 0;
+        }
+
+        .title {
+            position: absolute;
+            top: 400px;
         }
 
     </style>
@@ -130,16 +137,18 @@ movie_tile_content = '''
             <div class=".container">
                 <img class="col-md-7" src="{poster_image_url}" width="220" height="339">
                  <h5><b>Summary: </b></h5>
-                <p class="col-md-5 summary">
+                <div class="col-md-5 summary">
+                <p>
                     {summary}
                 </p>
+                </div>
             </div>
             <div class=".container-fluid">
                 <strong>Director:</strong> {director}<br>
                 <strong>Stars:</strong> {stars}
             </div>
-            <div style="clear: both;"></div>
-            <div class=".container">
+
+            <div class=".container title">
                 <h2 class="text-center">{movie_title}</h2>
             </div>
 </div>
