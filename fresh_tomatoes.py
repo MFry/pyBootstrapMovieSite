@@ -10,7 +10,7 @@ __author__ = 'Michal Frystacky'
 This is a modified version of Movie Trailer Website codebase.
  Found at:  https://docs.google.com/a/knowlabs.com/document/d/1joDQNQl_4icYYm6tM_F9ch5hZEH_f157hlljSUGOLWs/pub?embedded=true
 
- The program takes a
+ The program outputs an html page with movies added from a list of Movie objects
 """
 
 # Styles and scripting for the page

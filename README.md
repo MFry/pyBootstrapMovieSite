@@ -25,6 +25,7 @@ For additional information:
 ## Author:
 
  Michal Frystacky
+ 
 ### License:
 
  The MIT License (MIT)
