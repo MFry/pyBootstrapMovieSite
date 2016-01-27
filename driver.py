@@ -10,7 +10,7 @@ import argparse
 import fresh_tomatoes
 from media import Movie
 
-__author__ = 'michalfrystacky'
+__author__ = 'Michal Frystacky'
 
 # expected order of data in text files for generating a Movie object
 NAME = 0
@@ -22,7 +22,7 @@ DIRECTOR = 4
 
 
 def main():
-    # get help and setup to acceptcommand line arguments
+    # get help and setup to accept command line arguments
     parser = argparse.ArgumentParser(description="Generate Bootstrap movie site.")
     parser.add_argument('PATH', metavar='PATH', type=str,
                         help='Location of the folder containing movie text files. \n  (default: movies/)',
