@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import webbrowser
 import os
 import re
@@ -7,6 +9,8 @@ __author__ = 'Michal Frystacky'
 """
 This is a modified version of Movie Trailer Website codebase.
  Found at:  https://docs.google.com/a/knowlabs.com/document/d/1joDQNQl_4icYYm6tM_F9ch5hZEH_f157hlljSUGOLWs/pub?embedded=true
+
+ The program takes a
 """
 
 # Styles and scripting for the page

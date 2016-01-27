@@ -1,4 +1,12 @@
+#!/usr/bin/env python
+
+"""
+ Program that interfaces with the user and calls all other programs to generate the final page.
+  Takes an optional single command line arguments and looks fora  folder defined in the argument.
+"""
+
 import os
+import argparse
 import fresh_tomatoes
 from media import Movie
 
@@ -14,8 +22,14 @@ DIRECTOR = 4
 
 
 def main():
+    # get help and setup to acceptcommand line arguments
+    parser = argparse.ArgumentParser(description="Generate Bootstrap movie site.")
+    parser.add_argument('PATH', metavar='PATH', type=str,
+                        help='Location of the folder containing movie text files. \n  (default: movies/)',
+                        default='movies/')
     # path containing movies data
-    path = 'movies/'
+    args = parser.parse_args()
+    path = args.PATH
     # container for movie objects
     movies = []
     # find all the files (we assume that the folder contains nothing but readable text files containing movie data)

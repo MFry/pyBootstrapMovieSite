@@ -18,6 +18,10 @@ Python3 is used to generate a static web page allowing visitors to browse their 
 In terminal/command prompt run from the program directory
 
     python driver.py
+    
+For additional information:
+
+    python driver.py -h
 ## Author:
 
  Michal Frystacky
