@@ -200,7 +200,7 @@ def create_movie_tiles_content(movies):
 
 def construct_google_link(*names):
     """
-        A program that takes strings of names and creates google links with html code out of them
+        A function that takes strings of names and creates google links with html code out of them
     :param names: arbitrary many string containing names split by space. (e.x. arnold schwarzenegger)
      :type names: list[str]
     :return: A string containing a google link linking the names to google results.
