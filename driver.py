@@ -24,9 +24,8 @@ DIRECTOR = 4
 def main():
     # get help and setup to accept command line arguments
     parser = argparse.ArgumentParser(description="Generate Bootstrap movie site.")
-    parser.add_argument('PATH', metavar='PATH', type=str,
-                        help='Location of the folder containing movie text files. \n  (default: movies/)',
-                        default='movies/')
+    parser.add_argument('PATH', metavar='PATH', nargs='?', type=str, default='movies/',
+                        help='Location of the folder containing movie text files. \n  (default: movies/)')
     # path containing movies data
     args = parser.parse_args()
     path = args.PATH
