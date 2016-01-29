@@ -1,6 +1,17 @@
+#!/usr/bin/env python
+
 import webbrowser
 import os
 import re
+
+__author__ = 'Michal Frystacky'
+
+"""
+This is a modified version of Movie Trailer Website codebase.
+ Found at:  https://docs.google.com/a/knowlabs.com/document/d/1joDQNQl_4icYYm6tM_F9ch5hZEH_f157hlljSUGOLWs/pub?embedded=true
+
+ The program outputs an html page with movies added from a list of Movie objects
+"""
 
 # Styles and scripting for the page
 main_page_head = '''
@@ -36,6 +47,7 @@ main_page_head = '''
         .movie-tile {
             margin-bottom: 20px;
             padding-top: 20px;
+            padding-bottom: 60px;
         }
         .movie-tile:hover {
             background-color: #EEE;
@@ -55,11 +67,17 @@ main_page_head = '''
             background-color: white;
         }
         .summary {
-            height:236px;
+            height:264px;
             overflow: hidden;
             -ms-text-overflow: ellipsis;
             -o-text-overflow: ellipsis;
             text-overflow: ellipsis;
+            padding: 0;
+        }
+
+        .title {
+            position: absolute;
+            top: 400px;
         }
 
     </style>
@@ -130,26 +148,34 @@ movie_tile_content = '''
             <div class=".container">
                 <img class="col-md-7" src="{poster_image_url}" width="220" height="339">
                  <h5><b>Summary: </b></h5>
-                <p class="col-md-5 summary">
+                <div class="col-md-5 summary">
+                <p>
                     {summary}
                 </p>
+                </div>
             </div>
             <div class=".container-fluid">
                 <strong>Director:</strong> {director}<br>
                 <strong>Stars:</strong> {stars}
             </div>
-            <div style="clear: both;"></div>
-            <div class=".container">
+
+            <div class=".container title">
                 <h2 class="text-center">{movie_title}</h2>
             </div>
 </div>
 '''
-
+# template to create google linked names
 movie_talent_content = '<a href="http://www.google.com/search?q={query}">{name}</a>'
 
 
 def create_movie_tiles_content(movies):
-    # The HTML content for this section of the page
+    """
+        Generates movie tiles HTML code and inserts it into main page head
+    :param movies:
+     :type movies: list[Movie]
+    :return: a generated HTML page with movie tiles inserted
+    :rtype: str
+    """
     content = ''
     for movie in movies:
         # Extract the youtube ID from the url
@@ -174,10 +200,11 @@ def create_movie_tiles_content(movies):
 
 def construct_google_link(*names):
     """
-
-    :param names:
-     :type names: list str
-    :return:
+        A function that takes strings of names and creates google links with html code out of them
+    :param names: arbitrary many string containing names split by space. (e.x. arnold schwarzenegger)
+     :type names: list[str]
+    :return: A string containing a google link linking the names to google results.
+                (e.x. <a href="http://www.google.com/search?q=Colin+Farrell">Colin Farrell</a>)
      :rtype: str
     """
     return_link = ''
