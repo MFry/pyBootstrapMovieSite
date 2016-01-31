@@ -11,7 +11,8 @@ class Movie:
     """
     def __init__(self, title, poster_image_url, youtube_url, summary, director, *stars):
         """
-            Constructor that requires all the arguments and an arbitrary many stars (1+)
+            Constructor that requires all the arguments and an arbitrary many stars (1+) that will be passed to
+            fresh_tomatoes.py to generate movie tiles
         :param title: The movie name (e.x. Terminator)
          :type title: str
         :param poster_image_url: A string to a location of an image of the movie poster (e.x. images/red_poster.img,
@@ -23,7 +24,7 @@ class Movie:
          :type summary: str
         :param director: The main director of the movie
          :type director: str
-        :param stars: An upacked list of stars (e.x. "Taylor Kitsch", "Lynn Collins", "Willem Dafoe"
+        :param stars: An unpacked list of stars (e.x. "Taylor Kitsch", "Lynn Collins", "Willem Dafoe"
          :type stars: str
         :return: Nothing
         """
