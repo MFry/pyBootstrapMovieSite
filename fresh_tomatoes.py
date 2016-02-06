@@ -1,17 +1,17 @@
 #!/usr/bin/env python
 
-import webbrowser
-import os
-import re
-
-__author__ = 'Michal Frystacky'
-
 """
 This is a modified version of Movie Trailer Website codebase.
  Found at:  https://docs.google.com/a/knowlabs.com/document/d/1joDQNQl_4icYYm6tM_F9ch5hZEH_f157hlljSUGOLWs/pub?embedded=true
 
  The program outputs an html page with movies added from a list of Movie objects
 """
+
+import webbrowser
+import os
+import re
+
+__author__ = 'Michal Frystacky'
 
 # Styles and scripting for the page
 main_page_head = '''
@@ -225,6 +225,12 @@ def construct_google_link(*names):
 
 
 def open_movies_page(movies):
+    """
+        Writes the complete HTML file to "fresh_tomatoes.html" and calls the webbrowser
+         to open the file.
+    :param movies: A list of movie objects to be rendered.
+    :return: None
+    """
     # Create or overwrite the output file
     output_file = open('fresh_tomatoes.html', 'w')
 
