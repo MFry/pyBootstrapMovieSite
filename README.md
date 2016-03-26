@@ -2,8 +2,9 @@
 ### P1: Movie Trailer Website
 
 ####Project 1: 
-Server-side code to store a list of your favorite movies, including box art imagery and a movie trailer URL.
-Python3 is used to generate a static web page allowing visitors to browse their movies and watch the trailers.
+Server-side code that pulls from a local list of movies you wish to display to generate a movie trailer webpage.
+
+Python3 is used to generate a static web page allowing visitors to browse movie posters, trailers, and additional information for each movie.
 ## Usage:
 ### Tools: 
  Python3 (Tested on Python 3.5x, although python 2x should work with only minor modifications)
